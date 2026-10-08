@@ -146,6 +146,29 @@ test('patched_redos_case_rejects_a_slow_completed_nonmatch', async () => {
   assert.equal(result.passed, false);
 });
 
+test('patched_redos_case_rejects_an_earlier_slow_sample_even_when_the_last_is_fast', async () => {
+  const samples = [8, 12, 16, 20, 24, 28].map((size) => ({
+    size,
+    elapsedNs: size === 24 ? 300_000_000 : 1_000_000,
+    matched: false,
+  }));
+  const processRunner = async () => ({
+    status: 'completed', elapsedMs: 330,
+    stdout: `${JSON.stringify({
+      caseId: 'path-redos', sdkVersion: '1.25.2', readyAtNs: '1',
+      elapsedNs: '1000000', matched: false, variables: null, samples,
+    })}\n`,
+    stderr: `READY\tpath-redos\t1.25.2\n${samples.map((sample) => `SAMPLE\t${JSON.stringify(sample)}`).join('\n')}\n`,
+  });
+
+  const result = await runUriCase({ sdkAlias: 'mcp-sdk-1252', caseId: 'path-redos', timeoutMs: 2_000, processRunner });
+
+  assert.equal(result.expected, 'no_match_under_budget');
+  assert.equal(result.observed.samples[4].elapsedMs, 300);
+  assert.equal(result.observed.samples[5].elapsedMs, 1);
+  assert.equal(result.passed, false);
+});
+
 test('pre_ready_timeout_is_preserved_as_inconclusive_evidence', async () => {
   const processRunner = async () => ({ status: 'timeout', elapsedMs: 1, stdout: '', stderr: '' });
   const result = await runUriCase({ sdkAlias: 'mcp-sdk-1251', caseId: 'path-redos', timeoutMs: 1, processRunner });

@@ -114,7 +114,8 @@ export const runUriCase = async ({ sdkAlias, caseId, timeoutMs, processRunner = 
     && processStatus === 'completed'
     && observed.matched === false
     && completeSeries
-    && observed.elapsedMs < 100;
+    && observed.elapsedMs < 100
+    && observed.samples.every((sample) => sample.elapsedMs < 100);
   const passed = diagnostics.ready && diagnostics.sdkVersion === aliasVersions[sdkAlias] && (
     slowOrTimeout
     || patchedUnderBudget
