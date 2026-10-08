@@ -25,7 +25,7 @@ npm run check
 npm run evidence
 ```
 
-`npm run check` runs 33 behavior and failure-mode tests, then checks all 19 package/version cases. `npm run evidence` writes `reports/latest.json` and `reports/latest.md`. The checked-in report is a local snapshot; each [CI run](https://github.com/ehddbr/mcp-security-regression-lab/actions/workflows/verify.yml) regenerates evidence for its exact commit on Node 22 and 24 and uploads it as an artifact. Timings depend on the runner. A nonzero exit or `fail`/`inconclusive` verdict should be investigated, never presented as a passing result.
+`npm run check` runs the behavior and failure-mode test suite, then checks all 19 package/version cases. `npm run evidence` writes `reports/latest.json` and `reports/latest.md`. The checked-in report is a local snapshot; each [CI run](https://github.com/ehddbr/mcp-security-regression-lab/actions/workflows/verify.yml) regenerates evidence for its exact commit on Node 22 and 24 and uploads it as an artifact. Timings depend on the runner. A nonzero exit or `fail`/`inconclusive` verdict should be investigated, never presented as a passing result.
 
 To focus a case, run `node src/cli.mjs verify --case path-redos`. The case name must exist in the checked-in manifest. The process supervisor enforces a 2-second deadline and a 64-KiB output cap for regex workers. Historical packages are test inputs, not production recommendations.
 
