@@ -11,6 +11,8 @@ Reproducible, local regression tests for two **already published** security fixe
 
 The [upstream advisories](https://github.com/modelcontextprotocol/typescript-sdk/security/advisories) identify the original reporters and fixes. This lab independently checks those changes. It does **not** claim original discovery, a CVE credited to this maintainer, a paid bounty, an accepted disclosure, or safety of a whole SDK version.
 
+The [initial public release commit](https://github.com/ehddbr/mcp-security-regression-lab/commit/97c73b6be9a15da795af34faea69fc5605937da3) passed [GitHub Actions run 37721561500](https://github.com/ehddbr/mcp-security-regression-lab/actions/runs/37721561500) on Node 22 and 24. Its uploaded [Node 22](https://github.com/ehddbr/mcp-security-regression-lab/actions/runs/37721561500/artifacts/11526076598) and [Node 24](https://github.com/ehddbr/mcp-security-regression-lab/actions/runs/37721561500/artifacts/11525896911) evidence each records that exact commit, a clean source tree, and 19 passing cases. Later commits have their own results under the workflow link above.
+
 ## Reproduce
 
 Use Node.js 22 or 24. The only HTTP listeners are ephemeral `127.0.0.1` ports owned by this test process; the CLI has no target URL option.
