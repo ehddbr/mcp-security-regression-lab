@@ -1,0 +1,11 @@
+# Follow-up review and disclosure status
+
+The public lab validates **two previously published** SDK advisories. On 2026-10-08, we also inspected the published `@modelcontextprotocol/sdk` 1.32.1 package around `UriTemplate.partToRegExp()`, `UriTemplate.match()`, the Express `createMcpExpressApp()` helper, `hostHeaderValidation()`, and the Web Standard Streamable HTTP transport's Host/Origin checks. The exploded-variable regex still excludes commas in its repeated segment, and the localhost Express helper still installs Host validation. The transport's opt-in validation is covered by the already published DNS-rebinding advisory and its custom-server guidance. This bounded source read did not establish a new security finding.
+
+One possible Host/Origin userinfo parsing concern is already addressed in the upstream open [PR #2490](https://github.com/modelcontextprotocol/typescript-sdk/pull/2490), which describes the scope as parser-boundary hardening rather than a demonstrated browser exploit. It is therefore not presented as this project's finding or as an accepted disclosure. We also checked the upstream [published security advisories](https://github.com/modelcontextprotocol/typescript-sdk/security/advisories) and [URI-template issue #965](https://github.com/modelcontextprotocol/typescript-sdk/issues/965) before drawing this conclusion. This review covers the named boundaries only; it is not a comprehensive audit of SDK 1.32.1.
+
+No new candidate, private disclosure, maintainer acceptance, CVE credit, bounty standing, or CVP approval is claimed here.
+
+Any follow-up candidate must be reproduced against a current release in an isolated local fixture, checked against existing advisories/issues, scoped to a real security boundary, and prepared with an impact explanation and remediation. Unpatched details stay private until coordinated disclosure permits publication. A negative review result will be reported as such, rather than converted into a credential claim.
+
+The [CVP application](https://portal.anthropic.com/programs/cvp/apply) requires an independently verifiable individual qualification. The repository and its CI links are supporting engineering evidence only. As of this document's initial draft, none of the four qualification checkboxes has been established by this project.

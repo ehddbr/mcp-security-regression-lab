@@ -1,0 +1,23 @@
+{
+  "name": "mcp-security-regression-lab",
+  "version": "0.1.0",
+  "description": "Reproducible security regression tests for published MCP SDK fixes",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22 <25"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "verify": "node src/cli.mjs verify",
+    "evidence": "node src/cli.mjs evidence --output reports",
+    "check": "npm test && npm run verify"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "mcp-sdk-1231": "npm:@modelcontextprotocol/sdk@1.23.1",
+    "mcp-sdk-1240": "npm:@modelcontextprotocol/sdk@1.24.0",
+    "mcp-sdk-1251": "npm:@modelcontextprotocol/sdk@1.25.1",
+    "mcp-sdk-1252": "npm:@modelcontextprotocol/sdk@1.25.2"
+  }
+}

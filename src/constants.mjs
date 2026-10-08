@@ -1,0 +1,3 @@
+export const DEFAULT_PROCESS_TIMEOUT_MS = 2_000;
+export const MAX_PROCESS_OUTPUT_BYTES = 64 * 1024;
+export const PROCESS_KILL_GRACE_MS = 100;

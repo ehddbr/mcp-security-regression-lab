@@ -1,0 +1,6 @@
+node_modules/
+reports/*.tmp
+reports/*.bak
+private/
+docs/superpowers/
+.superpowers/
