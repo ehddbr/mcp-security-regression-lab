@@ -1,0 +1,758 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-08T03:08:22.516Z",
+  "repository": {
+    "url": "https://github.com/ehddbr/mcp-security-regression-lab",
+    "commit": "86c30af6babe6c0940e550cbecf31f9de0b53e5b",
+    "dirty": false
+  },
+  "runtime": {
+    "node": "v22.23.3",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "packages": [
+    {
+      "alias": "mcp-sdk-1231",
+      "name": "@modelcontextprotocol/sdk",
+      "version": "1.23.1",
+      "integrity": "sha512-JvO6eVMbSKdk+iZcwECz/tra9DRAKlv1mAOsQ1DAWU3qG28tDIffpkEAUkqMMwlOq77GhnMpezEjiQJGIR+hHw=="
+    },
+    {
+      "alias": "mcp-sdk-1240",
+      "name": "@modelcontextprotocol/sdk",
+      "version": "1.24.0",
+      "integrity": "sha512-D8h5KXY2vHFW8zTuxn2vuZGN0HGrQ5No6LkHwlEA9trVgNdPL3TF1dSqKA7Dny6BbBYKSW/rOBDXdC8KJAjUCg=="
+    },
+    {
+      "alias": "mcp-sdk-1251",
+      "name": "@modelcontextprotocol/sdk",
+      "version": "1.25.1",
+      "integrity": "sha512-yO28oVFFC7EBoiKdAn+VqRm+plcfv4v0xp6osG/VsCB0NlPZWi87ajbCZZ8f/RvOFLEu7//rSRmuZZ7lMoe3gQ=="
+    },
+    {
+      "alias": "mcp-sdk-1252",
+      "name": "@modelcontextprotocol/sdk",
+      "version": "1.25.2",
+      "integrity": "sha512-LZFeo4F9M5qOhC/Uc1aQSrBHxMrvxett+9KLHt7OhcExtoiRN9DKgbZffMP/nxjutWDQpfMDfP3nkHI4X9ijww=="
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "legacy-disallowed-host",
+      "advisoryId": "CVE-2025-66414",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-w48q-cv73-mx4w",
+      "attribution": "JLLeitschuh",
+      "packageAlias": "mcp-sdk-1231",
+      "sdkVersion": "1.23.1",
+      "input": {
+        "shape": "host_disallowed_with_port"
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "status_406_marker_1",
+      "observed": {
+        "statusCode": 406,
+        "responseBytes": 116,
+        "markerCount": 1,
+        "hostClass": "disallowed_with_port"
+      },
+      "verdict": "pass",
+      "limitations": [
+        "The two setups differ in their documented Express construction; upgrading a custom Express app alone does not add this middleware.",
+        "This is a local server-side Host check, not an end-to-end browser DNS-rebinding exploit."
+      ]
+    },
+    {
+      "caseId": "ordinary-no-match",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1251",
+      "sdkVersion": "1.25.1",
+      "input": {
+        "shape": "short_control",
+        "length": 12
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.102875,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 102875,
+            "matched": false,
+            "elapsedMs": 0.102875
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "ordinary-no-match",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1252",
+      "sdkVersion": "1.25.2",
+      "input": {
+        "shape": "short_control",
+        "length": 12
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.091417,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 91417,
+            "matched": false,
+            "elapsedMs": 0.091417
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "path-invalid-control",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1251",
+      "sdkVersion": "1.25.1",
+      "input": {
+        "shape": "short_control",
+        "length": 11
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.087375,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 87375,
+            "matched": false,
+            "elapsedMs": 0.087375
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "path-invalid-control",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1252",
+      "sdkVersion": "1.25.2",
+      "input": {
+        "shape": "short_control",
+        "length": 11
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.091959,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 91959,
+            "matched": false,
+            "elapsedMs": 0.091959
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "path-redos",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1251",
+      "sdkVersion": "1.25.1",
+      "input": {
+        "shape": "comma_segments_trailing_slash",
+        "length": 64
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "slow_or_timeout",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 1530.642416,
+        "samples": [
+          {
+            "size": 8,
+            "elapsedNs": 96959,
+            "matched": false,
+            "elapsedMs": 0.096959
+          },
+          {
+            "size": 12,
+            "elapsedNs": 45125,
+            "matched": false,
+            "elapsedMs": 0.045125
+          },
+          {
+            "size": 16,
+            "elapsedNs": 449792,
+            "matched": false,
+            "elapsedMs": 0.449792
+          },
+          {
+            "size": 20,
+            "elapsedNs": 5904875,
+            "matched": false,
+            "elapsedMs": 5.904875
+          },
+          {
+            "size": 24,
+            "elapsedNs": 95228458,
+            "matched": false,
+            "elapsedMs": 95.228458
+          },
+          {
+            "size": 28,
+            "elapsedNs": 1530642416,
+            "matched": false,
+            "elapsedMs": 1530.642416
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "path-redos",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1252",
+      "sdkVersion": "1.25.2",
+      "input": {
+        "shape": "comma_segments_trailing_slash",
+        "length": 64
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match_under_budget",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.008458,
+        "samples": [
+          {
+            "size": 8,
+            "elapsedNs": 82959,
+            "matched": false,
+            "elapsedMs": 0.082959
+          },
+          {
+            "size": 12,
+            "elapsedNs": 23625,
+            "matched": false,
+            "elapsedMs": 0.023625
+          },
+          {
+            "size": 16,
+            "elapsedNs": 43167,
+            "matched": false,
+            "elapsedMs": 0.043167
+          },
+          {
+            "size": 20,
+            "elapsedNs": 3791,
+            "matched": false,
+            "elapsedMs": 0.003791
+          },
+          {
+            "size": 24,
+            "elapsedNs": 37000,
+            "matched": false,
+            "elapsedMs": 0.037
+          },
+          {
+            "size": 28,
+            "elapsedNs": 8458,
+            "matched": false,
+            "elapsedMs": 0.008458
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "path-valid",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1251",
+      "sdkVersion": "1.25.1",
+      "input": {
+        "shape": "valid_exploded_path",
+        "length": 17
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "match",
+      "observed": {
+        "matched": true,
+        "variables": {
+          "id": [
+            "alpha",
+            "beta"
+          ]
+        },
+        "elapsedMs": 0.140542,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 140542,
+            "matched": true,
+            "elapsedMs": 0.140542
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "path-valid",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1252",
+      "sdkVersion": "1.25.2",
+      "input": {
+        "shape": "valid_exploded_path",
+        "length": 17
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "match",
+      "observed": {
+        "matched": true,
+        "variables": {
+          "id": [
+            "alpha",
+            "beta"
+          ]
+        },
+        "elapsedMs": 0.102333,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 102333,
+            "matched": true,
+            "elapsedMs": 0.102333
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "protected-disallowed-host",
+      "advisoryId": "CVE-2025-66414",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-w48q-cv73-mx4w",
+      "attribution": "JLLeitschuh",
+      "packageAlias": "mcp-sdk-1240",
+      "sdkVersion": "1.24.0",
+      "input": {
+        "shape": "host_disallowed_with_port"
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "status_403_marker_0",
+      "observed": {
+        "statusCode": 403,
+        "responseBytes": 91,
+        "markerCount": 0,
+        "hostClass": "disallowed_with_port"
+      },
+      "verdict": "pass",
+      "limitations": [
+        "The two setups differ in their documented Express construction; upgrading a custom Express app alone does not add this middleware.",
+        "This is a local server-side Host check, not an end-to-end browser DNS-rebinding exploit."
+      ]
+    },
+    {
+      "caseId": "protected-localhost",
+      "advisoryId": "CVE-2025-66414",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-w48q-cv73-mx4w",
+      "attribution": "JLLeitschuh",
+      "packageAlias": "mcp-sdk-1240",
+      "sdkVersion": "1.24.0",
+      "input": {
+        "shape": "host_localhost_with_port"
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "status_406_marker_1",
+      "observed": {
+        "statusCode": 406,
+        "responseBytes": 116,
+        "markerCount": 1,
+        "hostClass": "localhost_with_port"
+      },
+      "verdict": "pass",
+      "limitations": [
+        "The two setups differ in their documented Express construction; upgrading a custom Express app alone does not add this middleware.",
+        "This is a local server-side Host check, not an end-to-end browser DNS-rebinding exploit."
+      ]
+    },
+    {
+      "caseId": "protected-loopback-ip",
+      "advisoryId": "CVE-2025-66414",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-w48q-cv73-mx4w",
+      "attribution": "JLLeitschuh",
+      "packageAlias": "mcp-sdk-1240",
+      "sdkVersion": "1.24.0",
+      "input": {
+        "shape": "host_loopback_ip_with_port"
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "status_406_marker_1",
+      "observed": {
+        "statusCode": 406,
+        "responseBytes": 116,
+        "markerCount": 1,
+        "hostClass": "loopback_ip_with_port"
+      },
+      "verdict": "pass",
+      "limitations": [
+        "The two setups differ in their documented Express construction; upgrading a custom Express app alone does not add this middleware.",
+        "This is a local server-side Host check, not an end-to-end browser DNS-rebinding exploit."
+      ]
+    },
+    {
+      "caseId": "protected-missing-host",
+      "advisoryId": "CVE-2025-66414",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-w48q-cv73-mx4w",
+      "attribution": "JLLeitschuh",
+      "packageAlias": "mcp-sdk-1240",
+      "sdkVersion": "1.24.0",
+      "input": {
+        "shape": "host_missing"
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "status_400_marker_0",
+      "observed": {
+        "statusCode": 400,
+        "responseBytes": 0,
+        "markerCount": 0,
+        "hostClass": "missing"
+      },
+      "verdict": "pass",
+      "limitations": [
+        "The two setups differ in their documented Express construction; upgrading a custom Express app alone does not add this middleware.",
+        "This is a local server-side Host check, not an end-to-end browser DNS-rebinding exploit.",
+        "Node HTTP rejects the missing Host header before Express; this case does not prove middleware execution."
+      ]
+    },
+    {
+      "caseId": "simple-invalid-control",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1251",
+      "sdkVersion": "1.25.1",
+      "input": {
+        "shape": "short_control",
+        "length": 4
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.075,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 75000,
+            "matched": false,
+            "elapsedMs": 0.075
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "simple-invalid-control",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1252",
+      "sdkVersion": "1.25.2",
+      "input": {
+        "shape": "short_control",
+        "length": 4
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.072458,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 72458,
+            "matched": false,
+            "elapsedMs": 0.072458
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "simple-redos",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1251",
+      "sdkVersion": "1.25.1",
+      "input": {
+        "shape": "comma_segments_trailing_slash",
+        "length": 57
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "slow_or_timeout",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 1525.341166,
+        "samples": [
+          {
+            "size": 8,
+            "elapsedNs": 78709,
+            "matched": false,
+            "elapsedMs": 0.078709
+          },
+          {
+            "size": 12,
+            "elapsedNs": 43917,
+            "matched": false,
+            "elapsedMs": 0.043917
+          },
+          {
+            "size": 16,
+            "elapsedNs": 413583,
+            "matched": false,
+            "elapsedMs": 0.413583
+          },
+          {
+            "size": 20,
+            "elapsedNs": 6150792,
+            "matched": false,
+            "elapsedMs": 6.150792
+          },
+          {
+            "size": 24,
+            "elapsedNs": 98000083,
+            "matched": false,
+            "elapsedMs": 98.000083
+          },
+          {
+            "size": 28,
+            "elapsedNs": 1525341166,
+            "matched": false,
+            "elapsedMs": 1525.341166
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "simple-redos",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1252",
+      "sdkVersion": "1.25.2",
+      "input": {
+        "shape": "comma_segments_trailing_slash",
+        "length": 57
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "no_match_under_budget",
+      "observed": {
+        "matched": false,
+        "variables": null,
+        "elapsedMs": 0.042292,
+        "samples": [
+          {
+            "size": 8,
+            "elapsedNs": 81792,
+            "matched": false,
+            "elapsedMs": 0.081792
+          },
+          {
+            "size": 12,
+            "elapsedNs": 17125,
+            "matched": false,
+            "elapsedMs": 0.017125
+          },
+          {
+            "size": 16,
+            "elapsedNs": 59625,
+            "matched": false,
+            "elapsedMs": 0.059625
+          },
+          {
+            "size": 20,
+            "elapsedNs": 3375,
+            "matched": false,
+            "elapsedMs": 0.003375
+          },
+          {
+            "size": 24,
+            "elapsedNs": 3292,
+            "matched": false,
+            "elapsedMs": 0.003292
+          },
+          {
+            "size": 28,
+            "elapsedNs": 42292,
+            "matched": false,
+            "elapsedMs": 0.042292
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "simple-valid",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1251",
+      "sdkVersion": "1.25.1",
+      "input": {
+        "shape": "valid_exploded_simple",
+        "length": 10
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "match",
+      "observed": {
+        "matched": true,
+        "variables": {
+          "id": [
+            "alpha",
+            "beta"
+          ]
+        },
+        "elapsedMs": 0.076875,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 76875,
+            "matched": true,
+            "elapsedMs": 0.076875
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    },
+    {
+      "caseId": "simple-valid",
+      "advisoryId": "CVE-2026-0621",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/security/advisories/GHSA-cqwc-fm46-7fff",
+      "attribution": "weblover12",
+      "packageAlias": "mcp-sdk-1252",
+      "sdkVersion": "1.25.2",
+      "input": {
+        "shape": "valid_exploded_simple",
+        "length": 10
+      },
+      "ready": true,
+      "processStatus": "completed",
+      "expected": "match",
+      "observed": {
+        "matched": true,
+        "variables": {
+          "id": [
+            "alpha",
+            "beta"
+          ]
+        },
+        "elapsedMs": 0.076625,
+        "samples": [
+          {
+            "size": null,
+            "elapsedNs": 76625,
+            "matched": true,
+            "elapsedMs": 0.076625
+          }
+        ]
+      },
+      "verdict": "pass",
+      "limitations": [
+        "Timing is an observation on this runtime, not a universal performance guarantee."
+      ]
+    }
+  ],
+  "reproduction": "npm ci --ignore-scripts --no-audit --no-fund && npm run evidence",
+  "disclaimer": "Independent validation of previously published fixes; no original discovery or qualification claim."
+}
